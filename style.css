@@ -4,6 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
   font-family: Gotham Rounded, sans-serif;
 
@@ -54,4 +55,8 @@ background-color:rgb(221, 247, 250);;
 
 .ac, .equal {
   grid-column: span 2;
+}
+
+footer {
+  margin-top: 20vh;
 }
