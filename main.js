@@ -4,6 +4,7 @@ const equalButton = document.querySelector("[data-equal]")
 const allClearButton = document.querySelector("[data-all-clear]")
 const previousOperationDisplay = document.querySelector("[data-previous-operation]")
 const currentOperationDisplay = document.querySelector("[data-current-operation]")
+const deleteButton = document.querySelector("[data-delete]")
 
 let displayedNum = "";
 
@@ -16,6 +17,12 @@ allClearButton.addEventListener("click", () => {
   previousOperationDisplay.textContent = ""
   currentOperationDisplay.textContent = ""
   displayedNum = ""
+})
+
+// Delete Button
+deleteButton.addEventListener("click", ()=>{
+  displayedNum = displayedNum.slice(0,-1)
+  currentOperationDisplay.textContent = displayedNum
 })
 
 
@@ -36,12 +43,16 @@ operandButtons.forEach((operand) => {
     switch(operand.textContent){
       case "+":
         add()
+        break
       case "-":
-        console.log('Operands')
+        console.log('-')
+        break
       case "÷":
-        console.log('Operands')
+        console.log('/')
+        break
       case "*":
-        console.log('Operands')
+        console.log('*')
+        break
   }})
 })
 
