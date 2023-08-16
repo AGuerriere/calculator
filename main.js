@@ -8,20 +8,21 @@ const deleteButton = document.querySelector("[data-delete]")
 
 let displayedNum = "";
 
-let currentNumber = ""
+let currentNumber = 0
 
-let operandButtonPressed = false
+let lastOperand = ""
 
 // Clear Button
 allClearButton.addEventListener("click", () => {
   previousOperationDisplay.textContent = ""
-  currentOperationDisplay.textContent = ""
-  displayedNum = ""
+    currentOperationDisplay.textContent = ""
+    displayedNum = ""
+    currentNumber = 0
 })
 
 // Delete Button
 deleteButton.addEventListener("click", ()=>{
-  displayedNum = displayedNum.slice(0,-1)
+  displayedNum = displayedNum.slice(0, -1)
   currentOperationDisplay.textContent = displayedNum
 })
 
@@ -45,17 +46,69 @@ operandButtons.forEach((operand) => {
         add()
         break
       case "-":
-        console.log('-')
+        subtract()
         break
       case "÷":
-        console.log('/')
+        console.log("/")
         break
       case "*":
-        console.log('*')
+        console.log("*")
         break
   }})
 })
 
+
+// Equal button
+equalButton.addEventListener("click", ()=> {
+  switch(lastOperand){
+    case "+":
+      currentNumber += Number(currentOperationDisplay.textContent)
+      displayedNum = currentNumber
+      currentOperationDisplay.textContent = currentNumber
+      previousOperationDisplay.textContent = ""
+      lastOperand = "="
+      break
+    case "-":
+      currentNumber -= Number(currentOperationDisplay.textContent)
+      displayedNum = currentNumber
+      currentOperationDisplay.textContent = currentNumber
+      previousOperationDisplay.textContent = ""
+      lastOperand = "="
+      break
+    case "÷":
+      console.log("/")
+      break
+    case "*":
+      console.log("*")
+      break
+  }
+})
+
 function add() {
-  currentNumber += currentOperationDisplay.textContent
+  if(lastOperand == "="){
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "+"
+    displayedNum = ""
+  } else {
+    currentNumber += Number(currentOperationDisplay.textContent)
+    displayedNum = ""
+    currentOperationDisplay.textContent = ""
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "+"
+  }
+}
+
+
+function subtract() {
+  if(lastOperand == "="){
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "-"
+    displayedNum = ""
+  } else {
+    currentNumber -= Number(currentOperationDisplay.textContent)
+    displayedNum = ""
+    currentOperationDisplay.textContent = ""
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "-"
+  }
 }
