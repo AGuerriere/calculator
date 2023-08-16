@@ -1,6 +1,5 @@
 body {
-  background: rgb(0,221,255);
-  background: linear-gradient(90deg, rgba(0,221,255,1) 0%, rgba(0,209,223,1) 11%, rgba(9,9,121,1) 58%, rgba(0,255,169,1) 100%); 
+  background-image: repeating-linear-gradient(0deg, hsla(208,43%,84%,0.09) 0px, hsla(208,43%,84%,0.09) 1px,transparent 1px, transparent 9px),repeating-linear-gradient(90deg, hsla(208,43%,84%,0.09) 0px, hsla(208,43%,84%,0.09) 1px,transparent 1px, transparent 9px),linear-gradient(90deg, hsl(203,93%,43%),hsl(203,93%,43%));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +17,7 @@ body {
 }
 
 .display {
-  background-color: rgba(29, 29, 29, 0.73);
+  background-color: rgba(29, 29, 29, 0.8);
   grid-column: span 4;
   color: white;
   font-weight: bolder;
@@ -46,7 +45,7 @@ button {
 }
 
 button:hover {
-  background-color:rgb(206, 246, 251); ;
+  background-color:rgb(206, 246, 251);
 }
 
 button:active {
@@ -58,6 +57,19 @@ background-color:rgb(221, 247, 250);;
 }
 
 footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 20vh;
   color: white;
+}
+
+a {
+  color:rgb(133, 241, 255);
+  text-decoration: none;
+}
+
+p {
+  font-size: 8px;
 }
