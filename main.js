@@ -18,6 +18,7 @@ allClearButton.addEventListener("click", () => {
     currentOperationDisplay.textContent = ""
     displayedNum = ""
     currentNumber = 0
+    lastOperand = ""
 })
 
 // Delete Button
@@ -49,10 +50,10 @@ operandButtons.forEach((operand) => {
         subtract()
         break
       case "÷":
-        console.log("/")
+        divide()
         break
       case "*":
-        console.log("*")
+        multiply()
         break
   }})
 })
@@ -76,19 +77,40 @@ equalButton.addEventListener("click", ()=> {
       lastOperand = "="
       break
     case "÷":
-      console.log("/")
+      currentNumber /= Number(currentOperationDisplay.textContent)
+      displayedNum = currentNumber
+      currentOperationDisplay.textContent = currentNumber
+      previousOperationDisplay.textContent = ""
+      lastOperand = "="
       break
     case "*":
-      console.log("*")
+      currentNumber *= Number(currentOperationDisplay.textContent)
+      displayedNum = currentNumber
+      currentOperationDisplay.textContent = currentNumber
+      previousOperationDisplay.textContent = ""
+      lastOperand = "="
       break
   }
 })
 
 function add() {
   if(lastOperand == "="){
+    // how to behave when pressing add button soon after pressing the equal button
     previousOperationDisplay.textContent = currentNumber
     lastOperand = "+"
     displayedNum = ""
+  } else if (lastOperand === "+") {
+    currentNumber += Number(currentOperationDisplay.textContent)
+    displayedNum = ""
+    currentOperationDisplay.textContent = ""
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "+"
+  } else if(lastOperand === "-"){
+    currentNumber -= Number(currentOperationDisplay.textContent)
+    displayedNum = ""
+    currentOperationDisplay.textContent = ""
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "+"
   } else {
     currentNumber += Number(currentOperationDisplay.textContent)
     displayedNum = ""
@@ -99,16 +121,172 @@ function add() {
 }
 
 
+function subtractOld() {
+  if(lastOperand === "="){
+    // how to behave when pressing minus button soon after pressing the equal button
+    previousOperationDisplay.textContent = currentNumber
+    lastOperand = "-"
+    displayedNum = ""
+  } else if(lastOperand === "") {
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+  } else if(lastOperand === "-") {
+      currentNumber -= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+  } else if(lastOperand === "+") {
+      currentNumber += Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+  }
+}
+
 function subtract() {
-  if(lastOperand == "="){
-    previousOperationDisplay.textContent = currentNumber
-    lastOperand = "-"
-    displayedNum = ""
-  } else {
-    currentNumber -= Number(currentOperationDisplay.textContent)
-    displayedNum = ""
-    currentOperationDisplay.textContent = ""
-    previousOperationDisplay.textContent = currentNumber
-    lastOperand = "-"
+  switch(lastOperand){
+    case "=":
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+      break
+    case "-":
+      currentNumber -= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+      break
+    case "+":
+      currentNumber += Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+      break
+    case "*":
+      currentNumber *= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+      break
+    case "÷":
+      currentNumber /= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+      break
+    case "":
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "-"
+      break
+  }
+}
+
+
+
+function multiply(){
+  switch(lastOperand){
+    case "=":
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "*"
+      break
+    case "-":
+      currentNumber -= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "*"
+      break
+    case "+":
+      currentNumber += Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "*"
+      break
+    case "*":
+      currentNumber *= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "*"
+      break
+    case "÷":
+      currentNumber /= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "*"
+      break
+    case "":
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "*"
+      break
+  }
+}
+
+function divide(){
+  switch(lastOperand){
+    case "=":
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "÷"
+      break
+    case "-":
+      currentNumber -= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "÷"
+      break
+    case "+":
+      currentNumber += Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "÷"
+      break
+    case "*":
+      currentNumber *= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "÷"
+      break
+    case "÷":
+      currentNumber /= Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "÷"
+      break
+    case "":
+      currentNumber = Number(currentOperationDisplay.textContent)
+      displayedNum = ""
+      currentOperationDisplay.textContent = ""
+      previousOperationDisplay.textContent = currentNumber
+      lastOperand = "÷"
+      break
   }
 }
